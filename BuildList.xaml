@@ -1,0 +1,64 @@
+﻿<Window x:Class="MegaEpicGameUploader.BuildList"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MegaEpicGameUploader"
+        mc:Ignorable="d"
+        Title="Build List" Height="450" Width="800">
+    <DockPanel>
+        <Label Name="title" DockPanel.Dock="Top" Content="" FontSize="30"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <DockPanel Grid.Row="0">
+                <Label Content="Staging" DockPanel.Dock="Top"/>
+                <StackPanel VerticalAlignment="Bottom" DockPanel.Dock="Bottom" Orientation="Horizontal">
+                    <Button Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="75" Click="StagingRefreshClick" Margin="0,0,10,0"/>
+                    <Button Content="Make Live" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="75" Click="StagingLabelClick" Margin="0,0,10,0"/>
+                    <Button Content="Remove Labels" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="75" Click="StagingRemoveLabelsClick" Margin="0,0,10,0"/>
+                    <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="75" Click="StagingDeleteClick" Margin="0,0,10,0"/>
+                </StackPanel>
+                <ListBox Name="stagingBuildList"  ItemsSource="{Binding StagingBuildVersions}" >
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal">
+                                    <Label FontSize="10" Padding="2">Version:</Label>
+                                    <Label FontSize="10" Padding="2" Content="{Binding buildVersion}"/>
+                                    <Label FontSize="10" Padding="2" Content="{Binding buildDate}"/>
+                                    <Label FontSize="10" Padding="2" Content="{Binding buildStatus}"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </DockPanel>
+            <DockPanel Grid.Row="1">
+                <Label Content="Live" DockPanel.Dock="Top"/>
+                <StackPanel VerticalAlignment="Bottom" DockPanel.Dock="Bottom" Orientation="Horizontal">
+                    <Button Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="75" Click="LiveRefreshClick" Margin="0,0,10,0"/>
+                    <Button Content="Make Live" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="75" Click="LiveLabelClick" Margin="0,0,10,0"/>
+                    <Button Content="Remove Labels" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="75" Click="LiveRemoveLabelsClick" Margin="0,0,10,0"/>
+                    <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="75" Click="LiveDeleteClick" Margin="0,0,10,0"/>
+                </StackPanel>
+                <ListBox Name="liveBuildList" ItemsSource="{Binding LiveBuildVersions}" >
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal">
+                                    <Label FontSize="10" Padding="2">Version:</Label>
+                                    <Label FontSize="10" Padding="2" Content="{Binding buildVersion}"/>
+                                    <Label FontSize="10" Padding="2" Content="{Binding buildDate}"/>
+                                    <Label FontSize="10" Padding="2" Content="{Binding buildStatus}"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </DockPanel>
+        </Grid>
+    </DockPanel>
+</Window>

@@ -1,0 +1,15 @@
+﻿<Window x:Class="MegaEpicGameUploader.Labeler"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MegaEpicGameUploader"
+        mc:Ignorable="d"
+        Title="Make Live" MinHeight="150" Height="150" MinWidth="150" Width="150">
+    <StackPanel Margin="10">
+        <CheckBox Name="Win32" Content="Win32" />
+        <CheckBox Name="Windows" Content="Windows" />
+        <CheckBox Name="Mac" Content="Mac" />
+        <Button Name="label" Content="Make Live" Click="Label"/>
+    </StackPanel>
+</Window>

@@ -13,6 +13,7 @@
                     <MenuItem Header="Load Data" Click="LoadClick" />
                     <MenuItem Header="Load Products" Click="LoadProductsClick" />
                 </MenuItem>
+                <MenuItem Header="Download Latest Tools" Click="DownloadToolsClick" />
             </MenuItem>
         </Menu>
         <Image DockPanel.Dock="Top" Height="100">

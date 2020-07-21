@@ -16,6 +16,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Win32;
+using System.Net;
+using System.IO.Compression;
+using System.IO;
 
 namespace MegaEpicGameUploader
 {
@@ -67,6 +70,26 @@ namespace MegaEpicGameUploader
                     ProductData.Add(productData);
                 EpicData.Save(App.productData, "products");
             }
+        }
+
+        private void DownloadToolsClick(object sender, RoutedEventArgs e)
+        {
+            const string engineFolder = "Engine";
+            const string zipFile = "BuildPatchTool.zip";
+            const string zipFolder = "BuildPatchTool";
+            const string sourceUrl = "https://launcher-public-service-prod06.ol.epicgames.com/launcher/api/installer/download/BuildPatchTool.zip";
+
+            if (Directory.Exists(engineFolder))
+                Directory.Delete(engineFolder, true);
+            if (Directory.Exists(zipFolder))
+                Directory.Delete(zipFolder, true);
+            WebClient webClient = new WebClient();
+            webClient.DownloadFile(sourceUrl, zipFile);
+            ZipFile.ExtractToDirectory(zipFile, zipFolder);
+            string subdirectory = Directory.GetDirectories(zipFolder)[0];
+            Directory.Move(subdirectory + "/Engine", engineFolder);
+            App.saveData.toolPath = engineFolder + "/Binaries/Win64/BuildPatchTool.exe";
+            RefreshUI();
         }
 
         private void AddProductClick(object sender, RoutedEventArgs e)

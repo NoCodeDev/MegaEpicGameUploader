@@ -5,8 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MegaEpicGameUploader"
         mc:Ignorable="d"
-        Title="Mega Epic Game Uploader" MinHeight="350" Height="350" MinWidth="400" Width="400">
+        Title="Mega Epic Game Uploader" MinHeight="360" Height="360" MinWidth="400" Width="400">
     <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="File">
+                <MenuItem Header="Load">
+                    <MenuItem Header="Load Data" Click="LoadClick" />
+                    <MenuItem Header="Load Products" Click="LoadProductsClick" />
+                </MenuItem>
+            </MenuItem>
+        </Menu>
         <Image DockPanel.Dock="Top" Height="100">
             <Image.Source>
                 <BitmapImage UriSource="/images/epic.jpg" />
@@ -32,7 +40,7 @@
                         <TextBox x:Name="secretText" TextWrapping="Wrap" MinWidth="200"/>
                     </DockPanel>
                     <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="10, 10, 10,0">
-                        <Button x:Name="saveButton" Content="Save" Width="75" Click="SaveClick"/>
+                        <Button x:Name="saveButton" Content="Save" Width="75" Click="SaveClick" Margin="0,0,0,0"/>
                     </StackPanel>
                 </StackPanel>
             </TabItem>

@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
 
 namespace MegaEpicGameUploader
 {
@@ -28,17 +29,42 @@ namespace MegaEpicGameUploader
         {
             InitializeComponent();
             DataContext = this;
+            RefreshUI();
+            EpicApi.log += Log;
+        }
+
+        private void RefreshUI()
+        {
             toolPathText.Text = App.saveData.toolPath;
             orgText.Text = App.saveData.orgId;
             clientText.Text = App.saveData.clientId;
             secretText.Text = App.saveData.secret;
-            EpicApi.log += Log;
         }
 
         private void SaveClick(object sender, RoutedEventArgs e)
         {
             App.saveData = new EpicData { toolPath = toolPathText.Text, orgId = orgText.Text, clientId = clientText.Text, secret = secretText.Text };
             EpicData.Save(App.saveData, "data");
+        }
+
+        private void LoadClick(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                App.saveData = EpicData.Load<EpicData>(openFileDialog.FileName);
+                RefreshUI();
+            }
+        }
+
+        private void LoadProductsClick(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                foreach (ProductData productData in EpicData.Load<ObservableCollection<ProductData>>(openFileDialog.FileName))
+                    ProductData.Add(productData);
+            }
         }
 
         private void AddProductClick(object sender, RoutedEventArgs e)

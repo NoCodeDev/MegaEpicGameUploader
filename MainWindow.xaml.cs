@@ -54,6 +54,7 @@ namespace MegaEpicGameUploader
             {
                 App.saveData = EpicData.Load<EpicData>(openFileDialog.FileName);
                 RefreshUI();
+                EpicData.Save(App.saveData, "data");
             }
         }
 
@@ -64,6 +65,7 @@ namespace MegaEpicGameUploader
             {
                 foreach (ProductData productData in EpicData.Load<ObservableCollection<ProductData>>(openFileDialog.FileName))
                     ProductData.Add(productData);
+                EpicData.Save(App.productData, "products");
             }
         }
 
